@@ -15,15 +15,15 @@ import javax.swing.Spring;
 			this.id = id;
 		}
 		int id;
-		int monto;
+		float monto;
 
 		java.util.Date fecha;
 		
-		public int getMonto() {
+		public float getMonto() {
 			return monto;
 		}
-		public void setMonto(int monto) {
-			this.monto = monto;
+		public void setMonto(float f) {
+			this.monto = f;
 		}
 		public java.util.Date getFecha() {
 			return fecha;

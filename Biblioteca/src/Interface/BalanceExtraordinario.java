@@ -41,6 +41,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Font;
 
 public class BalanceExtraordinario extends JFrame {
 
@@ -137,6 +138,11 @@ public class BalanceExtraordinario extends JFrame {
 		});
 		btnExportarAPdf.setBounds(343, 404, 135, 23);
 		panel.add(btnExportarAPdf);
+		
+		JLabel lblBalanceExtraordinario = new JLabel("Balance Extraordinario");
+		lblBalanceExtraordinario.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBalanceExtraordinario.setBounds(0, 0, 225, 20);
+		panel.add(lblBalanceExtraordinario);
 	}
 
 	protected void exportar() {

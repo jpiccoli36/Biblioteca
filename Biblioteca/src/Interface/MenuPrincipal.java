@@ -3,6 +3,7 @@ package Interface;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Menu;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,21 +18,31 @@ import javax.swing.GroupLayout.Alignment;
 import com.toedter.calendar.JYearChooser;
 import com.toedter.calendar.JDayChooser;
 import com.toedter.components.JLocaleChooser;
+import java.awt.Window.Type;
+import java.awt.Rectangle;
+import java.awt.Dimension;
 
 public class MenuPrincipal extends JFrame {
+	
 
 	private JPanel contentPane;
 		
 	public MenuPrincipal() {
+	
+		
+		
 		setTitle("Biblioteca Alfonsina Storni");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 515, 544);
 		contentPane = new JPanel();
+
+
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setName("");
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		JButton btnCuotaSocio = new JButton("Cuota Socio");

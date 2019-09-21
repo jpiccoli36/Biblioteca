@@ -18,7 +18,7 @@ public class IngresoEgreso {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 					"insert  into ingresoegreso(Monto,Tipo,Fecha,Clase,Descripcion) values  (?,?,?,?,?)  ",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			stmt.setInt(1, in.getMonto());
+			stmt.setFloat(1, in.getMonto());
 			stmt.setString(2, in.getTipo());
 			stmt.setDate(3, (Date) in.getFecha());
 			stmt.setString(4, in.getClase());

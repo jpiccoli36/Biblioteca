@@ -44,6 +44,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.DropMode;
 import java.awt.SystemColor;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class BalanceCuotasSocio extends JFrame {
 
@@ -140,207 +142,184 @@ public class BalanceCuotasSocio extends JFrame {
 		});
 		btnExportarAPdf.setBounds(343, 404, 135, 23);
 		panel.add(btnExportarAPdf);
+
+		JLabel lblBalanceCuotasSocios = new JLabel("Balance Cuotas Socios");
+		lblBalanceCuotasSocios.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBalanceCuotasSocios.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBalanceCuotasSocios.setBounds(10, 0, 324, 20);
+		panel.add(lblBalanceCuotasSocios);
 	}
 
 	protected void exportar() {
 
 		ResultSet rs = null;
-		if((fechaInicio.getDate())!=null )
-		{
-			if((fechaFin.getDate())!=null )
-			{
-				int k =fechaInicio.getDate().compareTo(fechaFin.getDate());
-			 if(k<=0)
-			 {
+		if ((fechaInicio.getDate()) != null) {
+			if ((fechaFin.getDate()) != null) {
+				int k = fechaInicio.getDate().compareTo(fechaFin.getDate());
+				if (k <= 0) {
 
-		Date date = fechaInicio.getDate();
-		long d = date.getTime();
-		java.sql.Date fechaini = new java.sql.Date(d);
+					Date date = fechaInicio.getDate();
+					long d = date.getTime();
+					java.sql.Date fechaini = new java.sql.Date(d);
 
-		Date da = fechaFin.getDate();
-		long d1 = da.getTime();
-		java.sql.Date fechaFin = new java.sql.Date(d1);
-		;
+					Date da = fechaFin.getDate();
+					long d1 = da.getTime();
+					java.sql.Date fechaFin = new java.sql.Date(d1);
+					;
 
-		Balance b = new Balance();
-		rs = b.BalanceSocio(fechaini, fechaFin);
+					Balance b = new Balance();
+					rs = b.BalanceSocio(fechaini, fechaFin);
 
-		JFileChooser dlg = new JFileChooser();
-		int option = dlg.showSaveDialog(this);
-		if (option == JFileChooser.APPROVE_OPTION) {
-			File f = dlg.getSelectedFile();
-			
-			try {
-				String w = f.toString();
+					JFileChooser dlg = new JFileChooser();
+					int option = dlg.showSaveDialog(this);
+					if (option == JFileChooser.APPROVE_OPTION) {
+						File f = dlg.getSelectedFile();
 
-				FileOutputStream archivo = new FileOutputStream(w + ".pdf");
-				Document doc = new Document();
-				doc.setMargins(30, 30, 30, 30);
-				PdfWriter.getInstance(doc, archivo);
-				doc.open();									
-				ArrayList<String> l = new ArrayList<>();
-				l.add("Fecha");
-				l.add("Tipo");
-				
-				l.add("Monto");
+						try {
+							String w = f.toString();
 
-				
-				ArrayList<String>fecha = new ArrayList<>();
-				ArrayList<String>tipo = new ArrayList<>();
+							FileOutputStream archivo = new FileOutputStream(w + ".pdf");
+							Document doc = new Document();
+							doc.setMargins(30, 30, 30, 30);
+							PdfWriter.getInstance(doc, archivo);
+							doc.open();
+							ArrayList<String> l = new ArrayList<>();
+							l.add("Fecha");
+							l.add("Tipo");
 
-				ArrayList<String>monto = new ArrayList<>();
-			
+							l.add("Monto");
 
-			
+							ArrayList<String> fecha = new ArrayList<>();
+							ArrayList<String> tipo = new ArrayList<>();
 
-				
-				
-				
-			PdfPTable table = new PdfPTable(3);
-			PdfPCell columnHeader;
-			Integer numColumns = 3;
-            Integer numRows = 120;
-			
-			for (int column = 0; column < numColumns; column++) {
-                columnHeader = new PdfPCell(new Phrase( l.get(column)));
-                columnHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(columnHeader);
-			}
-                table.setHeaderRows(1);
-                
-                if(rs != null) {
+							ArrayList<String> monto = new ArrayList<>();
 
-				try {
-					while (rs.next()) {
+							PdfPTable table = new PdfPTable(3);
+							PdfPCell columnHeader;
+							Integer numColumns = 3;
+							Integer numRows = 120;
 
-						fecha.add(rs.getString("Fecha"));
-						tipo.add(rs.getString("Tipo"));
-						
-						monto.add(rs.getString("Monto"));
-					
+							for (int column = 0; column < numColumns; column++) {
+								columnHeader = new PdfPCell(new Phrase(l.get(column)));
+								columnHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+								table.addCell(columnHeader);
+							}
+							table.setHeaderRows(1);
+
+							if (rs != null) {
+
+								try {
+									while (rs.next()) {
+
+										fecha.add(rs.getString("Fecha"));
+										tipo.add(rs.getString("Tipo"));
+
+										monto.add(rs.getString("Monto"));
+
+									}
+								} catch (Exception e) {
+
+								}
+
+							}
+
+							for (int row = 0; row < fecha.size(); row++) {
+
+								table.addCell(fecha.get(row));
+								table.addCell(tipo.get(row));
+
+								table.addCell(monto.get(row));
+
+							}
+
+							String total = lbtotal.getText();
+							String tot = "\n" + " " + "Total " + "               " + total;
+							table.addCell(total);
+							table.addCell(tot);
+							doc.add(table);
+
+							doc.add(new Paragraph(tot));
+							doc.close();
+							JOptionPane.showMessageDialog(null, "Documento creado");
+						}
+
+						catch (Exception e) {
+
+							JOptionPane.showMessageDialog(null, "No hay nada para exportar");
+						}
 					}
-				}
-				catch (Exception e) {
-					
-				}
-				
-				}
-                      
-                for (int row = 0; row < fecha.size(); row++) {
-                    
-                        table.addCell(fecha.get(row));
-                        table.addCell(tipo.get(row));
-                   
-                        table.addCell(monto.get(row));
-                       
-                    
-                    }    		
-				
-							
-							
 
-					
-						String total = lbtotal.getText();
-						String tot = "\n" + " " + "Total " + "               " + total;
-						table.addCell(total);
-						table.addCell(tot);
-						doc.add(table);
-						
-						doc.add(new Paragraph(tot));
-						doc.close();
-						JOptionPane.showMessageDialog(null, "Documento Creado");
+				} else {
+					JOptionPane.showMessageDialog(null, "Fecha fin debe ser posterior a la fecha inicio");
+				}
 			}
-					
-					 catch (Exception e) {
 
-						 JOptionPane.showMessageDialog(null, "No Hay nada para Exportar");
-				}}
-			
-				}
-			 else{
-				 JOptionPane.showMessageDialog(null, "Fecha Fin Mayor a Fecha Inicio");
-			 }
-				}
-			 
-			
-		else{
-			 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Fin Periodo");
-			 }
+			else {
+				JOptionPane.showMessageDialog(null, "Seleccionar fecha fin período");
 			}
-			
-			
-				else{
-					 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Inicio Periodo");
-				}
-				}
-	
+		}
+
+		else {
+			JOptionPane.showMessageDialog(null, "Seleccionar fecha inicio período");
+
+		}
+	}
 
 	protected void PasarDatos() {
 		ResultSet rs = null;
-		if((fechaInicio.getDate())!=null )
-		{
-			if((fechaFin.getDate())!=null )
-			{
-				int k =fechaInicio.getDate().compareTo(fechaFin.getDate());
-			 if(k<=0)
-			 {
+		if ((fechaInicio.getDate()) != null) {
+			if ((fechaFin.getDate()) != null) {
+				int k = fechaInicio.getDate().compareTo(fechaFin.getDate());
+				if (k <= 0) {
 
-		Date date = fechaInicio.getDate();
-		long d = date.getTime();
-		java.sql.Date fechaini = new java.sql.Date(d);
+					Date date = fechaInicio.getDate();
+					long d = date.getTime();
+					java.sql.Date fechaini = new java.sql.Date(d);
 
-		Date da = fechaFin.getDate();
-		long d1 = da.getTime();
-		java.sql.Date fechaFin = new java.sql.Date(d1);
-		;
+					Date da = fechaFin.getDate();
+					long d1 = da.getTime();
+					java.sql.Date fechaFin = new java.sql.Date(d1);
+					;
 
-		Balance b = new Balance();
-		rs = b.BalanceSocio(fechaini, fechaFin);
+					Balance b = new Balance();
+					rs = b.BalanceSocio(fechaini, fechaFin);
 
-		float total = 0;
-		DefaultTableModel dfm = new DefaultTableModel();
-		table = this.table;
-		table.setModel(dfm);
-		dfm.setColumnIdentifiers(new Object[] { "Monto", "Fecha" });
+					float total = 0;
+					DefaultTableModel dfm = new DefaultTableModel();
+					table = this.table;
+					table.setModel(dfm);
+					dfm.setColumnIdentifiers(new Object[] { "Monto", "Fecha" });
 
-		if (rs != null) {
+					if (rs != null) {
 
-			try {
-				while (rs.next()) {
+						try {
+							while (rs.next()) {
 
-					dfm.addRow(new Object[] { (rs.getString("monto")), rs.getString("fecha") });
-					total = total + rs.getInt("monto");
+								dfm.addRow(new Object[] { (rs.getString("monto")), rs.getString("fecha") });
+								total = total + rs.getInt("monto");
 
+							}
+						} catch (SQLException e) {
+
+							e.printStackTrace();
+						}
+						lbtotal.setText("$ " + Float.toString(total));
+
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Fecha fin debe ser posterior a la fecha inicio");
 				}
-			} catch (SQLException e) {
-
-				e.printStackTrace();
 			}
-			lbtotal.setText("$ " + Float.toString(total));
+
+			else {
+				JOptionPane.showMessageDialog(null, "Seleccionar fecha fin período");
+			}
+		}
+
+		else {
+			JOptionPane.showMessageDialog(null, "Seleccionar fecha inicio período");
 
 		}
-		
-			 
-			 
-			}
-		 else{
-			 JOptionPane.showMessageDialog(null, "Fecha Fin Mayor a Fecha Inicio");
-		 }
-			}
-		 
-		
-	else{
-		 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Fin Periodo");
-		 }
-		}
-		
-		
-			else{
-				 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Inicio Periodo");
-			}
-			}
+	}
 }
-	
-			
-	
-	

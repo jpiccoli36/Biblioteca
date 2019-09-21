@@ -2,7 +2,7 @@ package Entidades;
 
 public class Ingreso {
 
-	int monto;
+	float monto;
 	String tipo;
 	String descripcion;
 	java.util.Date fecha;
@@ -17,12 +17,12 @@ public class Ingreso {
 		this.id = id;
 	}
 
-	public int getMonto() {
+	public float getMonto() {
 		return monto;
 	}
 
-	public void setMonto(int monto) {
-		this.monto = monto;
+	public void setMonto(float f) {
+		this.monto = f;
 	}
 
 	public String getTipo() {

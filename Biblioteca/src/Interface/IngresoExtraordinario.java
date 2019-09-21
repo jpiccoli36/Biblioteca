@@ -1,14 +1,11 @@
 package Interface;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.ControladorBalance;
-import Entidades.CuotasSocios;
 import Entidades.Ingreso;
 
 import javax.swing.GroupLayout;
@@ -27,6 +24,7 @@ import java.awt.Window.Type;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class IngresoExtraordinario extends JFrame {
 
@@ -87,55 +85,51 @@ public class IngresoExtraordinario extends JFrame {
 				mp.setVisible(true);
 			}
 		});
+
+		JLabel lblIngreso = new JLabel("Ingreso Extraordinario");
+		lblIngreso.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(40)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblTipoDeIngreso, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblMonto)
-						.addComponent(lblDescripcion)
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel
+				.createSequentialGroup().addGap(40)
+				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblTipoDeIngreso, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addComponent(lblMonto).addComponent(lblDescripcion)
 						.addComponent(btnAceptar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-							.addGap(18)
-							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-							.addGap(27)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(tfDescripcion)
-								.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-								.addComponent(tfMonto))))
-					.addContainerGap(196, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap(304, Short.MAX_VALUE)
-					.addComponent(btnMenuPrincipal)
-					.addGap(19))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(43)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(tfMonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblMonto))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblTipoDeIngreso))
-					.addGap(30)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDescripcion)
-						.addComponent(tfDescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAceptar)
-						.addComponent(btnCancelar))
-					.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-					.addComponent(btnMenuPrincipal)
-					.addContainerGap())
-		);
+				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_panel.createSequentialGroup().addGap(18).addComponent(btnCancelar,
+								GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(gl_panel.createSequentialGroup().addGap(27)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(tfDescripcion)
+										.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, 70,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(tfMonto))))
+				.addContainerGap(196, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup().addContainerGap(304, Short.MAX_VALUE)
+						.addComponent(btnMenuPrincipal).addGap(19))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup().addContainerGap().addComponent(lblIngreso)
+						.addContainerGap(368, Short.MAX_VALUE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup().addComponent(lblIngreso).addGap(29)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(tfMonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblMonto))
+						.addGap(18)
+						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblTipoDeIngreso))
+						.addGap(30)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblDescripcion)
+								.addComponent(tfDescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnAceptar)
+								.addComponent(btnCancelar))
+						.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE).addComponent(btnMenuPrincipal)
+						.addContainerGap()));
 		panel.setLayout(gl_panel);
 	}
 
@@ -143,7 +137,7 @@ public class IngresoExtraordinario extends JFrame {
 		Entidades.Ingreso in = new Ingreso();
 		ControladorBalance cb = new ControladorBalance();
 		try {
-			in.setMonto(Integer.parseInt(this.tfMonto.getText()));
+			in.setMonto(Float.parseFloat(this.tfMonto.getText()));
 			Object TipoEl = cbTipo.getSelectedItem();
 			in.setTipo((String) TipoEl);
 			in.setDescripcion(this.tfDescripcion.getText());
@@ -154,7 +148,7 @@ public class IngresoExtraordinario extends JFrame {
 			in.setFecha(fecha);
 			try {
 				cb.Ingreso(in);
-				JOptionPane.showMessageDialog(null, "Ingreso Cargado");
+				JOptionPane.showMessageDialog(null, "Ingreso cargado");
 				IngresoExtraordinario.this.dispose();
 				MenuPrincipal mp = new MenuPrincipal();
 				mp.setVisible(true);
@@ -164,7 +158,7 @@ public class IngresoExtraordinario extends JFrame {
 			}
 		} catch (NumberFormatException e1) {
 
-			JOptionPane.showMessageDialog(null, "Monto Invalido");
+			JOptionPane.showMessageDialog(null, "Monto inválido");
 		}
 
 	}

@@ -24,13 +24,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JDesktopPane;
+import java.awt.Frame;
+import java.awt.Toolkit;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class CuotaSocio extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfmonto;
 
+
 	public CuotaSocio() {
+	this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		
 		setTitle("Biblioteca Alfonsina Storni");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -68,24 +76,44 @@ public class CuotaSocio extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
+		
+		JLabel lblIngresoCuotas = new JLabel("Ingreso Cuota Socio");
+		lblIngresoCuotas.setHorizontalAlignment(SwingConstants.LEFT);
+		lblIngresoCuotas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addGap(22).addComponent(lblMonto).addGap(54)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup().addComponent(btnAceptar).addGap(45)
-										.addComponent(btnCancelar))
-								.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(123, Short.MAX_VALUE)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addGap(62)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMonto))
-						.addGap(60).addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnAceptar)
-								.addComponent(btnCancelar))
-						.addContainerGap(86, Short.MAX_VALUE)));
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(22)
+							.addComponent(lblMonto)
+							.addGap(54)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(btnAceptar)
+									.addGap(45)
+									.addComponent(btnCancelar))
+								.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblIngresoCuotas, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(87, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(lblIngresoCuotas)
+					.addGap(48)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblMonto))
+					.addGap(60)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAceptar)
+						.addComponent(btnCancelar))
+					.addContainerGap(86, Short.MAX_VALUE))
+		);
 		panel.setLayout(gl_panel);
 	}
 
@@ -93,14 +121,14 @@ public class CuotaSocio extends JFrame {
 		Entidades.CuotasSocios cs = new CuotasSocios();
 		ControladorBalance cb = new ControladorBalance();
 		try {
-			cs.setMonto(Integer.parseInt(this.tfmonto.getText()));
+			cs.setMonto(Float.parseFloat((this.tfmonto.getText())));
 			long time = System.currentTimeMillis();
 			java.sql.Date fecha = new java.sql.Date(time);
 
 			cs.setFecha(fecha);
 			try {
 				cb.CuotaSocio(cs);
-				JOptionPane.showMessageDialog(null, "Cuota Pagada");
+				JOptionPane.showMessageDialog(null, "Cuota cargada");
 				CuotaSocio.this.dispose();
 				MenuPrincipal mp = new MenuPrincipal();
 				mp.setVisible(true);

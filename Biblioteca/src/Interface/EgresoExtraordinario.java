@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class EgresoExtraordinario extends JFrame {
 
@@ -24,6 +25,7 @@ public class EgresoExtraordinario extends JFrame {
 	private JTextField tfdescripcion;
 
 	public EgresoExtraordinario() {
+		
 		setTitle("Biblioteca Alfonsina Storni");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -70,7 +72,7 @@ public class EgresoExtraordinario extends JFrame {
 				
 			}
 		});
-		btnMenuPrincipal.setBounds(302, 217, 112, 23);
+		btnMenuPrincipal.setBounds(282, 217, 132, 23);
 		panel.add(btnMenuPrincipal);
 		
 		JLabel lblMonto = new JLabel("Monto");
@@ -90,13 +92,18 @@ public class EgresoExtraordinario extends JFrame {
 		tfdescripcion.setBounds(122, 106, 86, 20);
 		panel.add(tfdescripcion);
 		tfdescripcion.setColumns(10);
+		
+		JLabel lblEgresoExtraordinario = new JLabel("Egreso Extraordinario");
+		lblEgresoExtraordinario.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEgresoExtraordinario.setBounds(10, 0, 286, 23);
+		panel.add(lblEgresoExtraordinario);
 	}
 
 	protected void egresoextraordinario() throws Exception {
 		Entidades.Ingreso in = new Ingreso();
 		ControladorBalance cb = new ControladorBalance();
 		try {
-			in.setMonto(Integer.parseInt(this.tfmonto.getText()));
+			in.setMonto(Float.parseFloat(this.tfmonto.getText()));
 			in.setDescripcion(this.tfdescripcion.getText());
 			in.setClase("egreso");
 			in.setTipo("Egreso");
@@ -106,7 +113,7 @@ public class EgresoExtraordinario extends JFrame {
 			in.setFecha(fecha);
 		
 				cb.Ingreso(in);
-				JOptionPane.showMessageDialog(null, "Egreso Cargado");
+				JOptionPane.showMessageDialog(null, "Egreso cargado");
 				EgresoExtraordinario.this.dispose();
 				MenuPrincipal mp = new MenuPrincipal();
 				mp.setVisible(true);					
@@ -115,7 +122,7 @@ public class EgresoExtraordinario extends JFrame {
 			
 		}
 		catch (NumberFormatException e1) {
-			JOptionPane.showMessageDialog(null, "Monto Invalido");
+			JOptionPane.showMessageDialog(null, "Monto inválido");
 		}
 
 		

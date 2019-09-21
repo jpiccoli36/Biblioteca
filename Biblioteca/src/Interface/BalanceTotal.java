@@ -32,6 +32,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.toedter.calendar.JDateChooser;
 
 import Datos.Balance;
+import java.awt.Font;
 
 public class BalanceTotal extends JFrame {
 
@@ -128,6 +129,11 @@ public class BalanceTotal extends JFrame {
 		});
 		btnExportarAPdf.setBounds(343, 404, 135, 23);
 		panel.add(btnExportarAPdf);
+		
+		JLabel lblBaa = new JLabel("Balance Total");
+		lblBaa.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBaa.setBounds(0, 0, 218, 20);
+		panel.add(lblBaa);
 	}
 
 	protected void exportar() {
@@ -236,26 +242,26 @@ if((fechaInicio.getDate())!=null )
 						
 						doc.add(new Paragraph(tot));
 						doc.close();
-						JOptionPane.showMessageDialog(null, "Documento Creado");
+						JOptionPane.showMessageDialog(null, "Documento creado");
 			}
 					
 					 catch (Exception e) {
 
-						 JOptionPane.showMessageDialog(null, "No Hay nada para Exportar");
+						 JOptionPane.showMessageDialog(null, "No hay nada para exportar");
 				}
 		}
 		}
 	 else{
-		 JOptionPane.showMessageDialog(null, "Fecha Fin Mayor a Fecha Inicio");
+		 JOptionPane.showMessageDialog(null, "Fecha fin debe ser posterior a la fecha inicio");
 	 }
 	 }
 	
 else{
-	 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Fin Periodo");}
+	 JOptionPane.showMessageDialog(null, "Seleccionar fecha fin período");}
 	}
 
 		else{
-			 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Inicio Periodo");
+			 JOptionPane.showMessageDialog(null, "Seleccionar fecha inicio período");
 			
 		}
 		
@@ -315,16 +321,16 @@ else{
 
 	}
 			 else{
-				 JOptionPane.showMessageDialog(null, "Fecha Fin Mayor a Fecha Inicio");
+				 JOptionPane.showMessageDialog(null, "Fecha fin debe ser posterior a la fecha inicio");
 			 }
 			 }
 			
 		else{
-			 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Fin Periodo");}
+			 JOptionPane.showMessageDialog(null, "Seleccionar fecha fin período");}
 			}
 
 				else{
-					 JOptionPane.showMessageDialog(null, "Seleccionar Fecha Inicio Periodo");
+					 JOptionPane.showMessageDialog(null, "Seleccionar fecha inicio período");
 					
 				}
 

@@ -20,7 +20,7 @@ public class CuotaSocio {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 					"insert  into ingresoegreso (Monto,Tipo,Fecha,Clase) values  (?,?,?,?)  ",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			stmt.setInt(1, c.getMonto());
+			stmt.setFloat(1, c.getMonto());
 			stmt.setString(2, "Cuota");
 			stmt.setDate(3, (Date) c.getFecha());
 			stmt.setString(4, "ingreso");

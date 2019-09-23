@@ -131,7 +131,7 @@ public class BalanceCuotasSocio extends JFrame {
 		panel.add(Total);
 
 		lbtotal = new JLabel("");
-		lbtotal.setBounds(76, 404, 46, 14);
+		lbtotal.setBounds(76, 404, 79, 14);
 		panel.add(lbtotal);
 
 		JButton btnExportarAPdf = new JButton("Exportar a PDF");

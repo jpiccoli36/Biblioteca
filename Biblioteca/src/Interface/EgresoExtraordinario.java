@@ -104,7 +104,10 @@ public class EgresoExtraordinario extends JFrame {
 		ControladorBalance cb = new ControladorBalance();
 		try {
 			in.setMonto(Float.parseFloat(this.tfmonto.getText()));
+			if(!this.tfdescripcion.getText().isEmpty())
+			{
 			in.setDescripcion(this.tfdescripcion.getText());
+			
 			in.setClase("egreso");
 			in.setTipo("Egreso");
 			long time = System.currentTimeMillis();
@@ -119,7 +122,10 @@ public class EgresoExtraordinario extends JFrame {
 				mp.setVisible(true);					
 				
 			
-			
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Falta descripcion");
+			}
 		}
 		catch (NumberFormatException e1) {
 			JOptionPane.showMessageDialog(null, "Monto inválido");

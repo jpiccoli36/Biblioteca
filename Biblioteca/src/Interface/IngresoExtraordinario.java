@@ -136,16 +136,20 @@ public class IngresoExtraordinario extends JFrame {
 	protected void ingreso() {
 		Entidades.Ingreso in = new Ingreso();
 		ControladorBalance cb = new ControladorBalance();
+		
 		try {
 			in.setMonto(Float.parseFloat(this.tfMonto.getText()));
 			Object TipoEl = cbTipo.getSelectedItem();
 			in.setTipo((String) TipoEl);
+			if(!this.tfDescripcion.getText().isEmpty())
+			{
 			in.setDescripcion(this.tfDescripcion.getText());
 			in.setClase("ingreso");
 			long time = System.currentTimeMillis();
 			java.sql.Date fecha = new java.sql.Date(time);
 
 			in.setFecha(fecha);
+		
 			try {
 				cb.Ingreso(in);
 				JOptionPane.showMessageDialog(null, "Ingreso cargado");
@@ -156,6 +160,11 @@ public class IngresoExtraordinario extends JFrame {
 			} catch (Exception e) {
 
 			}
+			}
+		
+		else{
+			JOptionPane.showMessageDialog(null, "Falta descripcion");
+		}
 		} catch (NumberFormatException e1) {
 
 			JOptionPane.showMessageDialog(null, "Monto inválido");

@@ -19,6 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -285,6 +286,7 @@ public class BalanceCuotasSocio extends JFrame {
 					rs = b.BalanceSocio(fechaini, fechaFin);
 
 					float total = 0;
+					DecimalFormat dec= new DecimalFormat("#.00");
 					DefaultTableModel dfm = new DefaultTableModel();
 					table = this.table;
 					table.setModel(dfm);
@@ -303,7 +305,9 @@ public class BalanceCuotasSocio extends JFrame {
 
 							e.printStackTrace();
 						}
-						lbtotal.setText("$ " + Float.toString(total));
+							String t= dec.format(total);
+							lbtotal.setText("$ " + t);
+
 
 					}
 

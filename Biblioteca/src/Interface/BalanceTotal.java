@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -315,7 +316,9 @@ else{
 
 				e.printStackTrace();
 			}
-			lbtotal.setText("$ " + Float.toString(total));
+			DecimalFormat dec= new DecimalFormat("#.00");
+			String t= dec.format(total);
+			lbtotal.setText("$ " + t);
 
 		}
 

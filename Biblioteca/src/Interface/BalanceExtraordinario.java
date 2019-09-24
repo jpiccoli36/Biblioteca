@@ -20,7 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -312,7 +312,11 @@ public class BalanceExtraordinario extends JFrame {
 
 				e.printStackTrace();
 			}
-			lbtotal.setText("$ " + Float.toString(total));
+			
+			DecimalFormat dec= new DecimalFormat("#.00");
+			String t= dec.format(total);
+			lbtotal.setText("$ " + t);
+			
 
 		}
 

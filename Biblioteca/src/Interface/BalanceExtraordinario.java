@@ -215,7 +215,7 @@ public class BalanceExtraordinario extends JFrame {
 					}
 				}
 				catch (Exception e) {
-					// TODO: handle exception
+					
 				}
 				
 				}
@@ -225,7 +225,12 @@ public class BalanceExtraordinario extends JFrame {
                         table.addCell(fecha.get(row));
                         table.addCell(tipo.get(row));
                         table.addCell(Descripcion.get(row));
+                        if(IngresoEgreso.get(row).equals("ingreso")){
                         table.addCell("$ "+monto.get(row));
+                        }
+                        else{
+                        	table.addCell("$ "+"-"+monto.get(row));
+                        }
                         table.addCell(IngresoEgreso.get(row));
                     
                     }    		
@@ -248,7 +253,8 @@ public class BalanceExtraordinario extends JFrame {
 					 catch (Exception e) {
 
 						 JOptionPane.showMessageDialog(null, "No Hay nada para Exportar");
-				}}
+				}
+			}
 
 	}
 
@@ -277,13 +283,27 @@ public class BalanceExtraordinario extends JFrame {
 
 			try {
 				while (rs.next()) {
-
+					if(rs.getString("clase").equals("ingreso"))
+					{
 					dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
-							rs.getString("Descripcion"), rs.getString("Monto"), rs.getString("Clase") });
+							rs.getString("Descripcion"), "$ "+rs.getString("Monto"), rs.getString("Clase") });
 					if (rs.getString("clase").equals("ingreso")) {
 						total = total + rs.getFloat("monto");
 					} else {
 						total = total - rs.getFloat("monto");
+					}
+					}
+					else{
+						{
+							dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
+									rs.getString("Descripcion"), "$ "+"-"+rs.getString("Monto"), rs.getString("Clase") });
+							if (rs.getString("clase").equals("ingreso")) {
+								total = total + rs.getFloat("monto");
+							} else {
+								total = total - rs.getFloat("monto");
+							}
+							}
+						
 					}
 					;
 

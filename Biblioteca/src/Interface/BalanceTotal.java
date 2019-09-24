@@ -225,7 +225,7 @@ if((fechaInicio.getDate())!=null )
                         table.addCell(fecha.get(row));
                         table.addCell(tipo.get(row));
                         table.addCell(Descripcion.get(row));
-                        table.addCell("$ "+monto.get(row));                        
+                        table.addCell("$ "+monto.get(row));
                         table.addCell(IngresoEgreso.get(row));
                     
                     }    		

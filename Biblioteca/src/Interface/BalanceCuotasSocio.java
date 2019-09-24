@@ -288,14 +288,14 @@ public class BalanceCuotasSocio extends JFrame {
 					DefaultTableModel dfm = new DefaultTableModel();
 					table = this.table;
 					table.setModel(dfm);
-					dfm.setColumnIdentifiers(new Object[] { "Monto", "Fecha" });
+					dfm.setColumnIdentifiers(new Object[] { "Fecha", "Monto" });
 
 					if (rs != null) {
 
 						try {
 							while (rs.next()) {
 
-								dfm.addRow(new Object[] { (rs.getString("monto")), rs.getString("fecha") });
+								dfm.addRow(new Object[] { (rs.getString("fecha")), "$ "+rs.getString("monto") });
 								total = total + rs.getFloat("monto");
 
 							}

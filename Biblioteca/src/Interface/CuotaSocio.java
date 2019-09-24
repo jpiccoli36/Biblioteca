@@ -121,11 +121,14 @@ public class CuotaSocio extends JFrame {
 		Entidades.CuotasSocios cs = new CuotasSocios();
 		ControladorBalance cb = new ControladorBalance();
 		try {
+			if(Float.parseFloat(this.tfmonto.getText())>=0)
+			{
 			cs.setMonto(Float.parseFloat((this.tfmonto.getText())));
 			long time = System.currentTimeMillis();
 			java.sql.Date fecha = new java.sql.Date(time);
 
 			cs.setFecha(fecha);
+			
 			try {
 				cb.CuotaSocio(cs);
 				JOptionPane.showMessageDialog(null, "Cuota cargada");
@@ -137,14 +140,20 @@ public class CuotaSocio extends JFrame {
 
 				e.printStackTrace();
 			} catch (Exception e) {
-
+				
 				e.printStackTrace();
+			} }
+			else{
+				JOptionPane.showMessageDialog(null, "El monto debe ser positivo");
 			}
-		} catch (NumberFormatException e1) {
+			}
+			
+		 catch (NumberFormatException e1) {
 			
 			JOptionPane.showMessageDialog(null, "Monto Invalido");
 		}
+			}
 		
+				
 
 	}
-}

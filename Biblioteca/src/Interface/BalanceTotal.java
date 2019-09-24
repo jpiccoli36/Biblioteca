@@ -215,7 +215,7 @@ if((fechaInicio.getDate())!=null )
 					}
 				}
 				catch (Exception e) {
-					// TODO: handle exception
+					
 				}
 				
 				}
@@ -225,7 +225,7 @@ if((fechaInicio.getDate())!=null )
                         table.addCell(fecha.get(row));
                         table.addCell(tipo.get(row));
                         table.addCell(Descripcion.get(row));
-                        table.addCell(monto.get(row));
+                        table.addCell("$ "+monto.get(row));                        
                         table.addCell(IngresoEgreso.get(row));
                     
                     }    		
@@ -304,9 +304,9 @@ else{
 					dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
 							rs.getString("Descripcion"), rs.getString("Monto"), rs.getString("Clase") });
 					if (rs.getString("clase").equals("ingreso")) {
-						total = total + rs.getInt("monto");
+						total = total + rs.getFloat("monto");
 					} else {
-						total = total - rs.getInt("monto");
+						total = total - rs.getFloat("monto");
 					}
 					;
 

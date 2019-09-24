@@ -197,7 +197,7 @@ public class BalanceCuotasSocio extends JFrame {
 							PdfPTable table = new PdfPTable(3);
 							PdfPCell columnHeader;
 							Integer numColumns = 3;
-							Integer numRows = 120;
+							
 
 							for (int column = 0; column < numColumns; column++) {
 								columnHeader = new PdfPCell(new Phrase(l.get(column)));
@@ -228,7 +228,7 @@ public class BalanceCuotasSocio extends JFrame {
 								table.addCell(fecha.get(row));
 								table.addCell(tipo.get(row));
 
-								table.addCell(monto.get(row));
+								table.addCell("$ "+monto.get(row));
 
 							}
 
@@ -296,7 +296,7 @@ public class BalanceCuotasSocio extends JFrame {
 							while (rs.next()) {
 
 								dfm.addRow(new Object[] { (rs.getString("monto")), rs.getString("fecha") });
-								total = total + rs.getInt("monto");
+								total = total + rs.getFloat("monto");
 
 							}
 						} catch (SQLException e) {

@@ -138,6 +138,8 @@ public class IngresoExtraordinario extends JFrame {
 		ControladorBalance cb = new ControladorBalance();
 		
 		try {
+			if(Float.parseFloat(this.tfMonto.getText())>=0)
+			{
 			in.setMonto(Float.parseFloat(this.tfMonto.getText()));
 			Object TipoEl = cbTipo.getSelectedItem();
 			in.setTipo((String) TipoEl);
@@ -163,8 +165,13 @@ public class IngresoExtraordinario extends JFrame {
 			}
 		
 		else{
-			JOptionPane.showMessageDialog(null, "Falta descripcion");
+			JOptionPane.showMessageDialog(null, "Falta descripción");
 		}
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "El monto debe ser positivo");
+				
+			}
 		} catch (NumberFormatException e1) {
 
 			JOptionPane.showMessageDialog(null, "Monto inválido");

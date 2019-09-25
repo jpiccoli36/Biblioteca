@@ -2,13 +2,17 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class MenuBalance extends JFrame {
 
@@ -18,15 +22,14 @@ public class MenuBalance extends JFrame {
 	public MenuBalance() {
 		setTitle("Biblioteca Alfonsina Storni");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 515, 544);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 		
 		JButton btnBalanceCuotasSocios = new JButton("Balance Cuotas Socios");
 		btnBalanceCuotasSocios.addActionListener(new ActionListener() {
@@ -36,8 +39,6 @@ public class MenuBalance extends JFrame {
 				mps.setVisible(true);
 			}
 		});
-		btnBalanceCuotasSocios.setBounds(86, 60, 231, 23);
-		panel.add(btnBalanceCuotasSocios);
 		
 		JButton btnBalanceCuentasExtraordinarias = new JButton("Balance Cuentas Extraordinarias");
 		btnBalanceCuentasExtraordinarias.addActionListener(new ActionListener() {
@@ -47,8 +48,6 @@ public class MenuBalance extends JFrame {
 				be.setVisible(true);
 			}
 		});
-		btnBalanceCuentasExtraordinarias.setBounds(86, 94, 231, 23);
-		panel.add(btnBalanceCuentasExtraordinarias);
 		
 		JButton btnBalanceTotal = new JButton("Balance Total");
 		btnBalanceTotal.addActionListener(new ActionListener() {
@@ -58,8 +57,6 @@ public class MenuBalance extends JFrame {
 				be.setVisible(true);
 			}
 		});
-		btnBalanceTotal.setBounds(86, 128, 231, 23);
-		panel.add(btnBalanceTotal);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -69,8 +66,43 @@ public class MenuBalance extends JFrame {
 				mp.setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(325, 203, 89, 23);
-		panel.add(btnCancelar);
+		
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
+		
+		
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(126)
+					.addComponent(btnBalanceCuotasSocios, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(126)
+					.addComponent(btnBalanceCuentasExtraordinarias, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(126)
+					.addComponent(btnBalanceTotal, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(394)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(150)
+					.addComponent(btnBalanceCuotasSocios, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGap(16)
+					.addComponent(btnBalanceCuentasExtraordinarias, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGap(15)
+					.addComponent(btnBalanceTotal, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGap(72)
+					.addComponent(btnCancelar))
+		);
+		panel.setLayout(gl_panel);
 	}
 
 }

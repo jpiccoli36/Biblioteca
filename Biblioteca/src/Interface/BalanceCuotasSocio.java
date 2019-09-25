@@ -1,6 +1,7 @@
 package Interface;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -45,6 +46,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.DropMode;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -57,9 +59,10 @@ public class BalanceCuotasSocio extends JFrame {
 	private JLabel lbtotal;
 
 	public BalanceCuotasSocio() {
+		
 		setTitle("Biblioteca Alfonsina Storni");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 536, 516);
+		setBounds(100, 100, 515, 544);;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

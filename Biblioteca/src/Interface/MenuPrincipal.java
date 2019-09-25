@@ -2,6 +2,7 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Menu;
 import java.awt.Toolkit;
 
@@ -13,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import com.toedter.calendar.JYearChooser;
@@ -21,6 +24,7 @@ import com.toedter.components.JLocaleChooser;
 import java.awt.Window.Type;
 import java.awt.Rectangle;
 import java.awt.Dimension;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class MenuPrincipal extends JFrame {
 	
@@ -28,6 +32,9 @@ public class MenuPrincipal extends JFrame {
 	private JPanel contentPane;
 		
 	public MenuPrincipal() {
+		
+		
+		
 	
 		
 		
@@ -36,11 +43,9 @@ public class MenuPrincipal extends JFrame {
 		setBounds(100, 100, 515, 544);
 		contentPane = new JPanel();
 
-
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
-		
 		JPanel panel = new JPanel();
 		panel.setName("");
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -93,33 +98,40 @@ public class MenuPrincipal extends JFrame {
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(126)
-							.addComponent(btnCuotaSocio, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(126)
-							.addComponent(btnExtraordinario, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(126)
-							.addComponent(btnBalance, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(325)
-							.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(75, Short.MAX_VALUE))
+					.addContainerGap(394, Short.MAX_VALUE)
+					.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(172)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnCuotaSocio, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnExtraordinario, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBalance, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
+					.addGap(172))
 		);
+		
+		
+		
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
+		
+		
+		
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(11)
+					.addGap(153)
 					.addComponent(btnCuotaSocio, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addGap(21)
 					.addComponent(btnExtraordinario, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
 					.addComponent(btnBalance, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addGap(38)
 					.addComponent(btnSalir)
-					.addContainerGap(255, Short.MAX_VALUE))
+					.addContainerGap(88, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 	}

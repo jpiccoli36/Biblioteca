@@ -248,7 +248,6 @@ public class BalanceCuotasSocio extends JFrame {
 							doc.setMargins(30, 30, 30, 30);
 							PdfWriter.getInstance(doc, archivo);
 							doc.open();
-							doc.addTitle("BALANCE CUOTAS SOCIOS");
 							ArrayList<String> l = new ArrayList<>();
 							l.add("Fecha");
 							l.add("Tipo");

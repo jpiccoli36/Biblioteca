@@ -1,7 +1,7 @@
 package Interface;
 
 import java.awt.BorderLayout;
-
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +15,7 @@ import Datos.Balance;
 
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 import java.io.FileOutputStream;
@@ -42,6 +43,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BalanceExtraordinario extends JFrame {
 
@@ -57,32 +61,25 @@ public class BalanceExtraordinario extends JFrame {
 		setBounds(100, 100, 515, 544);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		FlowLayout fl_contentPane = new FlowLayout();
+		contentPane.setLayout(fl_contentPane);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 
 		fechaInicio = new JDateChooser();
 		fechaInicio.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		fechaInicio.setBounds(213, 48, 87, 20);
-		panel.add(fechaInicio);
 
 		JLabel lblFechaInicioPeriodo = new JLabel("Fecha Inicio Periodo");
-		lblFechaInicioPeriodo.setBounds(31, 54, 124, 14);
-		panel.add(lblFechaInicioPeriodo);
 
 		JLabel lblFechaFinPeriodo = new JLabel("Fecha Fin Periodo");
-		lblFechaFinPeriodo.setBounds(31, 117, 124, 14);
-		panel.add(lblFechaFinPeriodo);
 
 		fechaFin = new JDateChooser();
-		fechaFin.setBounds(213, 117, 87, 20);
-		panel.add(fechaFin);
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -90,8 +87,6 @@ public class BalanceExtraordinario extends JFrame {
 				PasarDatos();
 			}
 		});
-		btnAceptar.setBounds(48, 168, 89, 23);
-		panel.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -101,8 +96,6 @@ public class BalanceExtraordinario extends JFrame {
 				BalanceExtraordinario.this.dispose();
 			}
 		});
-		btnCancelar.setBounds(198, 168, 89, 23);
-		panel.add(btnCancelar);
 
 		JButton btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.addActionListener(new ActionListener() {
@@ -112,23 +105,15 @@ public class BalanceExtraordinario extends JFrame {
 				BalanceExtraordinario.this.dispose();
 			}
 		});
-		btnMenuPrincipal.setBounds(180, 404, 135, 23);
-		panel.add(btnMenuPrincipal);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 217, 490, 176);
-		panel.add(scrollPane);
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
 		JLabel Total = new JLabel("Total");
-		Total.setBounds(20, 404, 46, 14);
-		panel.add(Total);
 
 		lbtotal = new JLabel("");
-		lbtotal.setBounds(68, 404, 87, 14);
-		panel.add(lbtotal);
 
 		JButton btnExportarAPdf = new JButton("Exportar a PDF");
 		btnExportarAPdf.addActionListener(new ActionListener() {
@@ -136,13 +121,81 @@ public class BalanceExtraordinario extends JFrame {
 				exportar();
 			}
 		});
-		btnExportarAPdf.setBounds(343, 404, 135, 23);
-		panel.add(btnExportarAPdf);
 		
-		JLabel lblBalanceExtraordinario = new JLabel("Balance Extraordinario");
+		JLabel lblBalanceExtraordinario = new JLabel("BALANCE CUENTAS EXTRAORDINARIAS");
 		lblBalanceExtraordinario.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblBalanceExtraordinario.setBounds(0, 0, 225, 20);
-		panel.add(lblBalanceExtraordinario);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(20)
+					.addComponent(Total, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+					.addGap(2)
+					.addComponent(lbtotal, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addGap(25)
+					.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+					.addGap(28)
+					.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 490, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(135, Short.MAX_VALUE)
+					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+					.addGap(50)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+					.addGap(121))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(121, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(fechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+							.addGap(50)
+							.addComponent(fechaFin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(93))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(113, Short.MAX_VALUE)
+					.addComponent(lblBalanceExtraordinario, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
+					.addGap(73))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblBalanceExtraordinario, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+					.addGap(61)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(fechaInicio, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGap(43)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(fechaFin, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(Total, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbtotal, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+		);
+		
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
+		panel.setLayout(gl_panel);
 	}
 
 	protected void exportar() {

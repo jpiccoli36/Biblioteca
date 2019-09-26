@@ -46,6 +46,7 @@ public class MenuPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		JPanel panel = new JPanel();
 		panel.setName("");
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -103,11 +104,24 @@ public class MenuPrincipal extends JFrame {
 					.addContainerGap())
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(172)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnCuotaSocio, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnBalance, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnExtraordinario, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnBalance, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnCuotaSocio, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
 					.addGap(172))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(153)
+					.addComponent(btnCuotaSocio, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnExtraordinario, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnBalance, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+					.addGap(34)
+					.addComponent(btnSalir)
+					.addContainerGap(88, Short.MAX_VALUE))
 		);
 		
 		
@@ -117,22 +131,6 @@ public class MenuPrincipal extends JFrame {
 			System.exit(0);
 			}
 		});
-		
-		
-		
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(153)
-					.addComponent(btnCuotaSocio, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-					.addGap(21)
-					.addComponent(btnExtraordinario, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(btnBalance, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-					.addGap(38)
-					.addComponent(btnSalir)
-					.addContainerGap(88, Short.MAX_VALUE))
-		);
 		panel.setLayout(gl_panel);
 	}
 }

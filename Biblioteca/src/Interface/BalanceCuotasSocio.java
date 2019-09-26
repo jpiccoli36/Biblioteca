@@ -3,6 +3,7 @@ package Interface;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import Datos.Balance;
 import Entidades.CuotasSocios;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -49,6 +51,9 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BalanceCuotasSocio extends JFrame {
 
@@ -65,32 +70,24 @@ public class BalanceCuotasSocio extends JFrame {
 		setBounds(100, 100, 515, 544);;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		contentPane.add(panel, BorderLayout.NORTH);
 
 		fechaInicio = new JDateChooser();
 		fechaInicio.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		fechaInicio.setBounds(213, 48, 87, 20);
-		panel.add(fechaInicio);
 
 		JLabel lblFechaInicioPeriodo = new JLabel("Fecha Inicio Periodo");
-		lblFechaInicioPeriodo.setBounds(31, 54, 124, 14);
-		panel.add(lblFechaInicioPeriodo);
 
 		JLabel lblFechaFinPeriodo = new JLabel("Fecha Fin Periodo");
-		lblFechaFinPeriodo.setBounds(31, 117, 124, 14);
-		panel.add(lblFechaFinPeriodo);
 
 		fechaFin = new JDateChooser();
-		fechaFin.setBounds(213, 117, 87, 20);
-		panel.add(fechaFin);
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -98,8 +95,6 @@ public class BalanceCuotasSocio extends JFrame {
 				PasarDatos();
 			}
 		});
-		btnAceptar.setBounds(48, 168, 89, 23);
-		panel.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -109,8 +104,6 @@ public class BalanceCuotasSocio extends JFrame {
 				BalanceCuotasSocio.this.dispose();
 			}
 		});
-		btnCancelar.setBounds(198, 168, 89, 23);
-		panel.add(btnCancelar);
 
 		JButton btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.addActionListener(new ActionListener() {
@@ -120,23 +113,15 @@ public class BalanceCuotasSocio extends JFrame {
 				BalanceCuotasSocio.this.dispose();
 			}
 		});
-		btnMenuPrincipal.setBounds(180, 404, 135, 23);
-		panel.add(btnMenuPrincipal);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 217, 490, 176);
-		panel.add(scrollPane);
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
 		JLabel Total = new JLabel("Total");
-		Total.setBounds(20, 404, 46, 14);
-		panel.add(Total);
 
 		lbtotal = new JLabel("");
-		lbtotal.setBounds(76, 404, 79, 14);
-		panel.add(lbtotal);
 
 		JButton btnExportarAPdf = new JButton("Exportar a PDF");
 		btnExportarAPdf.addActionListener(new ActionListener() {
@@ -144,14 +129,90 @@ public class BalanceCuotasSocio extends JFrame {
 				exportar();
 			}
 		});
-		btnExportarAPdf.setBounds(343, 404, 135, 23);
-		panel.add(btnExportarAPdf);
 
-		JLabel lblBalanceCuotasSocios = new JLabel("Balance Cuotas Socios");
+		JLabel lblBalanceCuotasSocios = new JLabel("BALANCE CUOTAS SOCIOS");
 		lblBalanceCuotasSocios.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBalanceCuotasSocios.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblBalanceCuotasSocios.setBounds(10, 0, 324, 20);
-		panel.add(lblBalanceCuotasSocios);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(217, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+								.addGap(58)
+								.addComponent(fechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+								.addGap(58)
+								.addComponent(fechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+							.addGap(61)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(192))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(263, Short.MAX_VALUE)
+					.addComponent(lblBalanceCuotasSocios, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
+					.addGap(241))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(112)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 490, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(Total, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lbtotal, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+							.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+							.addGap(28)
+							.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(103, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(22)
+					.addComponent(lblBalanceCuotasSocios, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+					.addGap(52)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(6)
+							.addComponent(lblFechaInicioPeriodo))
+						.addComponent(fechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(49)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblFechaFinPeriodo)
+						.addComponent(fechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(27)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnAceptar)
+						.addComponent(btnCancelar))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(12)
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lbtotal, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Total)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnMenuPrincipal)
+								.addComponent(btnExportarAPdf))))
+					.addGap(30))
+		);
+		
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
+		panel.setLayout(gl_panel);
 	}
 
 	protected void exportar() {
@@ -187,6 +248,7 @@ public class BalanceCuotasSocio extends JFrame {
 							doc.setMargins(30, 30, 30, 30);
 							PdfWriter.getInstance(doc, archivo);
 							doc.open();
+							doc.addTitle("BALANCE CUOTAS SOCIOS");
 							ArrayList<String> l = new ArrayList<>();
 							l.add("Fecha");
 							l.add("Tipo");

@@ -1,6 +1,8 @@
 package Interface;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +24,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Window.Type;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -39,8 +42,14 @@ public class IngresoExtraordinario extends JFrame {
 		setBounds(100, 100, 515, 544);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -86,50 +95,71 @@ public class IngresoExtraordinario extends JFrame {
 			}
 		});
 
-		JLabel lblIngreso = new JLabel("Ingreso Extraordinario");
+		JLabel lblIngreso = new JLabel("INGRESO EXTRAORDINARIO");
 		lblIngreso.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel
-				.createSequentialGroup().addGap(40)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblTipoDeIngreso, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addComponent(lblMonto).addComponent(lblDescripcion)
-						.addComponent(btnAceptar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_panel.createSequentialGroup().addGap(18).addComponent(btnCancelar,
-								GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(gl_panel.createSequentialGroup().addGap(27)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(tfDescripcion)
-										.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, 70,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(tfMonto))))
-				.addContainerGap(196, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup().addContainerGap(304, Short.MAX_VALUE)
-						.addComponent(btnMenuPrincipal).addGap(19))
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup().addContainerGap().addComponent(lblIngreso)
-						.addContainerGap(368, Short.MAX_VALUE)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addComponent(lblIngreso).addGap(29)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(tfMonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMonto))
-						.addGap(18)
-						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(157)
+					.addComponent(lblIngreso)
+					.addContainerGap(174, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(390, Short.MAX_VALUE)
+					.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+					.addGap(15))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(120)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblDescripcion)
+							.addGap(47)
+							.addComponent(tfDescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblMonto)
 								.addComponent(lblTipoDeIngreso))
-						.addGap(30)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblDescripcion)
-								.addComponent(tfDescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnAceptar)
-								.addComponent(btnCancelar))
-						.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE).addComponent(btnMenuPrincipal)
-						.addContainerGap()));
+							.addGap(27)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+								.addComponent(tfMonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(130, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(107)
+					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addGap(48)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(147, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblIngreso)
+					.addGap(95)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(6)
+							.addComponent(lblMonto))
+						.addComponent(tfMonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTipoDeIngreso)
+						.addComponent(cbTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(30)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(6)
+							.addComponent(lblDescripcion))
+						.addComponent(tfDescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(55)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAceptar)
+						.addComponent(btnCancelar))
+					.addGap(34)
+					.addComponent(btnMenuPrincipal)
+					.addGap(92))
+		);
 		panel.setLayout(gl_panel);
 	}
 

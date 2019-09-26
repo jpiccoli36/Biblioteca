@@ -2,6 +2,7 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,6 +20,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,8 +46,14 @@ public class CuotaSocio extends JFrame {
 		setBounds(100, 100, 515, 544);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -77,42 +85,43 @@ public class CuotaSocio extends JFrame {
 			}
 		});
 		
-		JLabel lblIngresoCuotas = new JLabel("Ingreso Cuota Socio");
+		JLabel lblIngresoCuotas = new JLabel("INGRESO CUOTA SOCIO");
 		lblIngresoCuotas.setHorizontalAlignment(SwingConstants.LEFT);
 		lblIngresoCuotas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(162, Short.MAX_VALUE)
+					.addComponent(lblIngresoCuotas, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+					.addGap(146))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(131)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(22)
-							.addComponent(lblMonto)
-							.addGap(54)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(btnAceptar)
-									.addGap(45)
-									.addComponent(btnCancelar))
-								.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+							.addGap(33)
+							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblIngresoCuotas, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(87, Short.MAX_VALUE))
+							.addComponent(lblMonto)
+							.addGap(74)
+							.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(120))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(21)
 					.addComponent(lblIngresoCuotas)
-					.addGap(48)
+					.addGap(121)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblMonto))
-					.addGap(60)
+						.addComponent(lblMonto)
+						.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(76)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAceptar)
-						.addComponent(btnCancelar))
-					.addContainerGap(86, Short.MAX_VALUE))
+						.addComponent(btnCancelar)
+						.addComponent(btnAceptar))
+					.addContainerGap(204, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 	}

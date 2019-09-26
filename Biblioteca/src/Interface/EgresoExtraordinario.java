@@ -2,6 +2,7 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,8 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class EgresoExtraordinario extends JFrame {
 
@@ -31,12 +36,17 @@ public class EgresoExtraordinario extends JFrame {
 		setBounds(100, 100, 515, 544);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -49,8 +59,6 @@ public class EgresoExtraordinario extends JFrame {
 				}
 			}
 		});
-		btnAceptar.setBounds(66, 166, 89, 23);
-		panel.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -60,8 +68,6 @@ public class EgresoExtraordinario extends JFrame {
 				me.setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(193, 166, 89, 23);
-		panel.add(btnCancelar);
 
 		JButton btnMenuPrincipal = new JButton("Menu Principal");
 		btnMenuPrincipal.addActionListener(new ActionListener() {
@@ -72,31 +78,73 @@ public class EgresoExtraordinario extends JFrame {
 
 			}
 		});
-		btnMenuPrincipal.setBounds(282, 217, 132, 23);
-		panel.add(btnMenuPrincipal);
 
 		JLabel lblMonto = new JLabel("Monto");
-		lblMonto.setBounds(32, 64, 46, 14);
-		panel.add(lblMonto);
 
 		tfmonto = new JTextField();
-		tfmonto.setBounds(122, 61, 86, 20);
-		panel.add(tfmonto);
 		tfmonto.setColumns(10);
 
 		JLabel lblDescripcion = new JLabel("Descripcion");
-		lblDescripcion.setBounds(32, 109, 80, 14);
-		panel.add(lblDescripcion);
 
 		tfdescripcion = new JTextField();
-		tfdescripcion.setBounds(122, 106, 86, 20);
-		panel.add(tfdescripcion);
 		tfdescripcion.setColumns(10);
 
-		JLabel lblEgresoExtraordinario = new JLabel("Egreso Extraordinario");
+		JLabel lblEgresoExtraordinario = new JLabel("EGRESO EXTRAORDINARIO");
 		lblEgresoExtraordinario.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblEgresoExtraordinario.setBounds(10, 0, 286, 23);
-		panel.add(lblEgresoExtraordinario);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblEgresoExtraordinario, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE))
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(151, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblMonto, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+							.addGap(44)
+							.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblDescripcion, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(tfdescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(126))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(131)
+					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(38)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(142, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(351, Short.MAX_VALUE)
+					.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(lblEgresoExtraordinario, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(116)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblMonto))
+						.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(25)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblDescripcion))
+						.addComponent(tfdescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(43)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnAceptar)
+						.addComponent(btnCancelar))
+					.addGap(38)
+					.addComponent(btnMenuPrincipal)
+					.addGap(138))
+		);
+		panel.setLayout(gl_panel);
 	}
 
 	protected void egresoextraordinario() throws Exception {

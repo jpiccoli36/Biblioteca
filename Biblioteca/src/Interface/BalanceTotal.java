@@ -118,7 +118,7 @@ public class BalanceTotal extends JFrame {
 		lblBaa.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(4)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
@@ -133,37 +133,28 @@ public class BalanceTotal extends JFrame {
 							.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE))
 					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(94)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-								.addGap(58)
-								.addComponent(fechaFin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(fechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 12, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(fechaInicio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(fechaFin, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
+						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 							.addGap(61)
 							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 							.addGap(16)))
-					.addContainerGap(99, Short.MAX_VALUE))
+					.addContainerGap(103, Short.MAX_VALUE))
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(180, Short.MAX_VALUE)
+					.addContainerGap(184, Short.MAX_VALUE)
 					.addComponent(lblBaa, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
 					.addGap(91))
 		);
-		
-		addWindowListener(new java.awt.event.WindowAdapter(){
-			public void windowClosing(WindowEvent e){
-			System.exit(0);
-			}
-		});
-		
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
@@ -191,6 +182,12 @@ public class BalanceTotal extends JFrame {
 						.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(20))
 		);
+		
+		addWindowListener(new java.awt.event.WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+			System.exit(0);
+			}
+		});
 		panel.setLayout(gl_panel);
 	}
 
@@ -215,7 +212,7 @@ if((fechaInicio.getDate())!=null )
 		;
 
 		Balance b = new Balance();
-		rs = b.BalanceExtraordinario(fechaini, fechaFin);
+		rs = b.BalanceTotal(fechaini, fechaFin);
 
 		JFileChooser dlg = new JFileChooser();
 		int option = dlg.showSaveDialog(this);
@@ -280,13 +277,18 @@ if((fechaInicio.getDate())!=null )
                       
                 for (int row = 0; row < fecha.size(); row++) {
                     
-                        table.addCell(fecha.get(row));
-                        table.addCell(tipo.get(row));
-                        table.addCell(Descripcion.get(row));
-                        table.addCell("$ "+monto.get(row));
-                        table.addCell(IngresoEgreso.get(row));
-                    
-                    }    		
+                	table.addCell(fecha.get(row));
+                    table.addCell(tipo.get(row));
+                    table.addCell(Descripcion.get(row));
+                    if(IngresoEgreso.get(row).equals("ingreso")){
+                    table.addCell("$ "+monto.get(row));
+                    }
+                    else{
+                    	table.addCell("$ "+"-"+monto.get(row));
+                    }
+                    table.addCell(IngresoEgreso.get(row));
+                
+                }    		
 				
 							
 							
@@ -359,12 +361,27 @@ else{
 			try {
 				while (rs.next()) {
 
+					if(rs.getString("clase").equals("ingreso"))
+					{
 					dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
-							rs.getString("Descripcion"), rs.getString("Monto"), rs.getString("Clase") });
+							rs.getString("Descripcion"), "$ "+rs.getString("Monto"), rs.getString("Clase") });
 					if (rs.getString("clase").equals("ingreso")) {
 						total = total + rs.getFloat("monto");
 					} else {
 						total = total - rs.getFloat("monto");
+					}
+					}
+					else{
+						{
+							dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
+									rs.getString("Descripcion"), "$ "+"-"+rs.getString("Monto"), rs.getString("Clase") });
+							if (rs.getString("clase").equals("ingreso")) {
+								total = total + rs.getFloat("monto");
+							} else {
+								total = total - rs.getFloat("monto");
+							}
+							}
+						
 					}
 					;
 

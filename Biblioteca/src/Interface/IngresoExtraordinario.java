@@ -64,7 +64,7 @@ public class IngresoExtraordinario extends JFrame {
 
 		JLabel lblTipoDeIngreso = new JLabel("Tipo de Ingreso");
 
-		JLabel lblDescripcion = new JLabel("Descripcion");
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n");
 
 		tfDescripcion = new JTextField();
 		tfDescripcion.setColumns(10);
@@ -86,7 +86,7 @@ public class IngresoExtraordinario extends JFrame {
 			}
 		});
 
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
+		JButton btnMenuPrincipal = new JButton("Men\u00FA Principal");
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IngresoExtraordinario.this.dispose();

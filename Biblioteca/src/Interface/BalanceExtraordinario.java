@@ -13,7 +13,6 @@ import com.toedter.calendar.JDateChooser;
 
 import Datos.Balance;
 
-
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -27,9 +26,6 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-
-
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -75,9 +71,9 @@ public class BalanceExtraordinario extends JFrame {
 			}
 		});
 
-		JLabel lblFechaInicioPeriodo = new JLabel("Fecha Inicio Periodo");
+		JLabel lblFechaInicioPeriodo = new JLabel("Fecha inicio per\u00EDodo");
 
-		JLabel lblFechaFinPeriodo = new JLabel("Fecha Fin Periodo");
+		JLabel lblFechaFinPeriodo = new JLabel("Fecha fin per\u00EDodo");
 
 		fechaFin = new JDateChooser();
 
@@ -97,7 +93,7 @@ public class BalanceExtraordinario extends JFrame {
 			}
 		});
 
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
+		JButton btnMenuPrincipal = new JButton("Men\u00FA Principal");
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MenuPrincipal mp = new MenuPrincipal();
@@ -121,76 +117,72 @@ public class BalanceExtraordinario extends JFrame {
 				exportar();
 			}
 		});
-		
+
 		JLabel lblBalanceExtraordinario = new JLabel("BALANCE CUENTAS EXTRAORDINARIAS");
 		lblBalanceExtraordinario.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(20)
-					.addComponent(Total, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(2)
-					.addComponent(lbtotal, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-					.addGap(25)
-					.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
-					.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 490, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(143, Short.MAX_VALUE)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-					.addGap(50)
-					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-					.addGap(121))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(156, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(fechaInicio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(fechaFin, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
-					.addGap(93))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(121, Short.MAX_VALUE)
-					.addComponent(lblBalanceExtraordinario, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
-					.addGap(73))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblBalanceExtraordinario, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-					.addGap(61)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-						.addComponent(fechaInicio, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-					.addGap(43)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup().addGap(20)
+						.addComponent(Total, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE).addGap(2)
+						.addComponent(lbtotal, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE).addGap(25)
+						.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+						.addGap(28)
+						.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup().addContainerGap()
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 490, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(22, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup().addGap(139)
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 124,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 124,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(fechaInicio, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+								.addComponent(fechaFin, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+						.addGap(110))
+				.addGroup(gl_panel.createSequentialGroup().addContainerGap(129, Short.MAX_VALUE).addGroup(gl_panel
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+								.addGap(41)
+								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblBalanceExtraordinario, GroupLayout.PREFERRED_SIZE, 316,
+								GroupLayout.PREFERRED_SIZE))
+						.addGap(73)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
+				.createSequentialGroup().addContainerGap()
+				.addComponent(lblBalanceExtraordinario, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+				.addGap(61)
+				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lblFechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, 14,
+										GroupLayout.PREFERRED_SIZE)
+								.addGap(43))
+						.addGroup(Alignment.LEADING,
+								gl_panel.createSequentialGroup()
+										.addComponent(fechaInicio, GroupLayout.PREFERRED_SIZE, 20,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(43)))
+				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblFechaFinPeriodo, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 						.addComponent(fechaFin, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+				.addGap(18)
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(11).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(Total, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lbtotal, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
-		);
-		
-		addWindowListener(new java.awt.event.WindowAdapter(){
-			public void windowClosing(WindowEvent e){
-			System.exit(0);
+						.addComponent(btnExportarAPdf, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))));
+
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
 			}
 		});
 		panel.setLayout(gl_panel);
@@ -198,8 +190,16 @@ public class BalanceExtraordinario extends JFrame {
 
 	protected void exportar() {
 
-		ResultSet rs = null;
 
+		ResultSet rs = null;
+if((fechaInicio.getDate())!=null )
+{
+	if((fechaFin.getDate())!=null )
+	{
+		int k =fechaInicio.getDate().compareTo(fechaFin.getDate());
+	 if(k<=0)
+	 {
+	 
 		Date date = fechaInicio.getDate();
 		long d = date.getTime();
 		java.sql.Date fechaini = new java.sql.Date(d);
@@ -228,9 +228,9 @@ public class BalanceExtraordinario extends JFrame {
 				ArrayList<String> l = new ArrayList<>();
 				l.add("Fecha");
 				l.add("Tipo");
-				l.add("Descripcion");
+				l.add("Descripción");
 				l.add("Monto");
-				l.add("Clase");
+				l.add("Ingreso/Egreso");
 				
 				ArrayList<String>fecha = new ArrayList<>();
 				ArrayList<String>tipo = new ArrayList<>();
@@ -298,19 +298,40 @@ public class BalanceExtraordinario extends JFrame {
 						
 						doc.add(new Paragraph(tot));
 						doc.close();
-						JOptionPane.showMessageDialog(null, "Documento Creado");
+						JOptionPane.showMessageDialog(null, "Documento creado");
 			}
 					
 					 catch (Exception e) {
 
-						 JOptionPane.showMessageDialog(null, "No Hay nada para Exportar");
+						 JOptionPane.showMessageDialog(null, "No hay nada para exportar");
 				}
-			}
+		}
+		}
+	 else{
+		 JOptionPane.showMessageDialog(null, "Fecha fin debe ser posterior a la fecha inicio");
+	 }
+	 }
+	
+else{
+	 JOptionPane.showMessageDialog(null, "Seleccionar fecha fin período");}
+	}
+
+		else{
+			 JOptionPane.showMessageDialog(null, "Seleccionar fecha inicio período");
+			
+		}
 
 	}
 
 	protected void PasarDatos() {
 		ResultSet rs = null;
+		if((fechaInicio.getDate())!=null )
+		{
+			if((fechaFin.getDate())!=null )
+			{
+				int k =fechaInicio.getDate().compareTo(fechaFin.getDate());
+			 if(k<=0)
+			 {
 
 		Date date = fechaInicio.getDate();
 		long d = date.getTime();
@@ -319,7 +340,6 @@ public class BalanceExtraordinario extends JFrame {
 		Date da = fechaFin.getDate();
 		long d1 = da.getTime();
 		java.sql.Date fechaFin = new java.sql.Date(d1);
-		;
 
 		Balance b = new Balance();
 		rs = b.BalanceExtraordinario(fechaini, fechaFin);
@@ -328,33 +348,32 @@ public class BalanceExtraordinario extends JFrame {
 		DefaultTableModel dfm = new DefaultTableModel();
 		table = this.table;
 		table.setModel(dfm);
-		dfm.setColumnIdentifiers(new Object[] { "Fecha", "Tipo", "Descripcion", "Monto", "Ingreso/Egreso" });
+		dfm.setColumnIdentifiers(new Object[] { "Fecha", "Tipo", "Descripción", "Monto", "Ingreso/Egreso" });
 
 		if (rs != null) {
 
 			try {
 				while (rs.next()) {
-					if(rs.getString("clase").equals("ingreso"))
-					{
-					dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
-							rs.getString("Descripcion"), "$ "+rs.getString("Monto"), rs.getString("Clase") });
 					if (rs.getString("clase").equals("ingreso")) {
-						total = total + rs.getFloat("monto");
+						dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
+								rs.getString("Descripcion"), "$ " + rs.getString("Monto"), rs.getString("Clase") });
+						if (rs.getString("clase").equals("ingreso")) {
+							total = total + rs.getFloat("monto");
+						} else {
+							total = total - rs.getFloat("monto");
+						}
 					} else {
-						total = total - rs.getFloat("monto");
-					}
-					}
-					else{
 						{
 							dfm.addRow(new Object[] { (rs.getString("Fecha")), rs.getString("Tipo"),
-									rs.getString("Descripcion"), "$ "+"-"+rs.getString("Monto"), rs.getString("Clase") });
+									rs.getString("Descripcion"), "$ " + "-" + rs.getString("Monto"),
+									rs.getString("Clase") });
 							if (rs.getString("clase").equals("ingreso")) {
 								total = total + rs.getFloat("monto");
 							} else {
 								total = total - rs.getFloat("monto");
 							}
-							}
-						
+						}
+
 					}
 					;
 
@@ -363,14 +382,27 @@ public class BalanceExtraordinario extends JFrame {
 
 				e.printStackTrace();
 			}
-			
-			DecimalFormat dec= new DecimalFormat("#.00");
-			String t= dec.format(total);
+
+			DecimalFormat dec = new DecimalFormat("#.00");
+			String t = dec.format(total);
 			lbtotal.setText("$ " + t);
-			
 
 		}
 
 	}
+			 else{
+				 JOptionPane.showMessageDialog(null, "Fecha fin debe ser posterior a la fecha inicio");
+			 }
+			 }
+			
+		else{
+			 JOptionPane.showMessageDialog(null, "Seleccionar fecha fin período");}
+			}
+
+				else{
+					 JOptionPane.showMessageDialog(null, "Seleccionar fecha inicio período");
+					
+				}
 
 }
+	}

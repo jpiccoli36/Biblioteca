@@ -69,7 +69,7 @@ public class EgresoExtraordinario extends JFrame {
 			}
 		});
 
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
+		JButton btnMenuPrincipal = new JButton("Men\u00FA Principal");
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuPrincipal mp = new MenuPrincipal();
@@ -84,7 +84,7 @@ public class EgresoExtraordinario extends JFrame {
 		tfmonto = new JTextField();
 		tfmonto.setColumns(10);
 
-		JLabel lblDescripcion = new JLabel("Descripcion");
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n");
 
 		tfdescripcion = new JTextField();
 		tfdescripcion.setColumns(10);
@@ -93,39 +93,37 @@ public class EgresoExtraordinario extends JFrame {
 		lblEgresoExtraordinario.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(191, Short.MAX_VALUE)
+					.addContainerGap(110, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblMonto, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-							.addGap(44)
-							.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblDescripcion, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-							.addGap(10)
-							.addComponent(tfdescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(126))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(351, Short.MAX_VALUE)
-					.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-					.addGap(131)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-					.addGap(38)
-					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(146, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(147, Short.MAX_VALUE)
-					.addComponent(lblEgresoExtraordinario, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE)
-					.addGap(60))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblMonto, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+									.addGap(44)
+									.addComponent(tfmonto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblDescripcion, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+									.addGap(10)
+									.addComponent(tfdescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblEgresoExtraordinario))
+							.addGap(126))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+							.addGap(38)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+							.addGap(112))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(btnMenuPrincipal, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(lblEgresoExtraordinario, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-					.addGap(116)
+					.addGap(110)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
@@ -137,13 +135,13 @@ public class EgresoExtraordinario extends JFrame {
 							.addGap(3)
 							.addComponent(lblDescripcion))
 						.addComponent(tfdescripcion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(43)
+					.addGap(47)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnAceptar)
-						.addComponent(btnCancelar))
-					.addGap(38)
+						.addComponent(btnCancelar)
+						.addComponent(btnAceptar))
+					.addGap(45)
 					.addComponent(btnMenuPrincipal)
-					.addGap(138))
+					.addGap(127))
 		);
 		panel.setLayout(gl_panel);
 	}

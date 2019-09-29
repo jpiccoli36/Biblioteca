@@ -67,9 +67,9 @@ public class BalanceTotal extends JFrame {
 			}
 		});
 
-		JLabel lblFechaInicioPeriodo = new JLabel("Fecha Inicio Periodo");
+		JLabel lblFechaInicioPeriodo = new JLabel("Fecha inicio per\u00EDodo");
 
-		JLabel lblFechaFinPeriodo = new JLabel("Fecha Fin Periodo");
+		JLabel lblFechaFinPeriodo = new JLabel("Fecha fin per\u00EDodo");
 
 		fechaFin = new JDateChooser();
 
@@ -89,7 +89,7 @@ public class BalanceTotal extends JFrame {
 			}
 		});
 
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
+		JButton btnMenuPrincipal = new JButton("Men\u00FA Principal");
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MenuPrincipal mp = new MenuPrincipal();
@@ -230,9 +230,9 @@ if((fechaInicio.getDate())!=null )
 				ArrayList<String> l = new ArrayList<>();
 				l.add("Fecha");
 				l.add("Tipo");
-				l.add("Descripcion");
+				l.add("Descripción");
 				l.add("Monto");
-				l.add("Clase");
+				l.add("Ingreso/Egreso");
 				
 				ArrayList<String>fecha = new ArrayList<>();
 				ArrayList<String>tipo = new ArrayList<>();
@@ -354,7 +354,7 @@ else{
 		DefaultTableModel dfm = new DefaultTableModel();
 		table = this.table;
 		table.setModel(dfm);
-		dfm.setColumnIdentifiers(new Object[] { "Fecha", "Tipo", "Descripcion", "Monto", "Ingreso/Egreso" });
+		dfm.setColumnIdentifiers(new Object[] { "Fecha", "Tipo", "Descripción", "Monto", "Ingreso/Egreso" });
 
 		if (rs != null) {
 

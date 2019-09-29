@@ -159,7 +159,7 @@ public class CuotaSocio extends JFrame {
 			
 		 catch (NumberFormatException e1) {
 			
-			JOptionPane.showMessageDialog(null, "Monto Invalido");
+			JOptionPane.showMessageDialog(null, "Monto inválido");
 		}
 			}
 		

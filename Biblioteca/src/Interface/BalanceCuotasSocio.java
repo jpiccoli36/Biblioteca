@@ -250,6 +250,9 @@ public class BalanceCuotasSocio extends JFrame {
 							l.add("Tipo");
 
 							l.add("Monto");
+							String titulo="\n" + " " + " BALANCE CUOTAS SOCIOS ENTRE LAS FECHAS: "+ fechaini +" - " + fechaFin + "\n";
+							doc.add(new Paragraph(titulo+"\n"));
+
 
 							ArrayList<String> fecha = new ArrayList<>();
 							ArrayList<String> tipo = new ArrayList<>();

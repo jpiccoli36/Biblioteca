@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyleConstants.FontConstants;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -231,6 +232,11 @@ if((fechaInicio.getDate())!=null )
 				l.add("Descripción");
 				l.add("Monto");
 				l.add("Ingreso/Egreso");
+						
+				String titulo="\n" + " " + " BALANCE CUENTAS EXTRAORDINARIAS ENTRE LAS FECHAS: "+ fechaini +" - " + fechaFin + "\n";
+				doc.add(new Paragraph(titulo+"\n"));
+				
+				
 				
 				ArrayList<String>fecha = new ArrayList<>();
 				ArrayList<String>tipo = new ArrayList<>();
